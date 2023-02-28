@@ -1,0 +1,125 @@
+/* Generic code */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.center--row--aligned {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+::placeholder {
+    color: black;
+}
+
+.return--btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+
+    width: 5rem;
+    height: 2rem;
+    border: none;
+    outline: none;
+    background-color: white;
+    color: gray;
+}
+.return--btn:hover {
+cursor: pointer;
+color: black;
+font-weight: 700;
+}
+
+/* Front page interface */
+
+.startPage--div {
+    display: flex;
+    flex-direction: row;
+    gap: 2rem;
+}
+.startPage--div > button {
+    background-color: aquamarine;
+    height: 10rem;
+    width: 10rem;
+}
+
+/* Set up new game interface */
+
+.gameSetup--div {
+    display: none;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.addPlayer--div {
+    border: 1px solid blue;
+    padding: 1rem 2rem 1rem 2rem;
+
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.addPlayer--div > section > input {
+    height: 2rem;
+    padding-left: 1rem;
+    font-size: 14pt;
+    background-color: rgb(197, 211, 197);
+    border-radius: 5px;
+    border: none;
+    outline: none;
+}
+
+.playerInfo {
+    border: 2px dashed orange;
+    padding: 1rem;
+    list-style-type: none;
+    font-size: 16pt;
+    text-align: center;
+}
+
+.chooseYatzy--div {
+    border: 1px solid green;
+    padding: 2rem;
+    text-align: center;
+}
+.chooseYatzy--div > .container--btns > button{
+    background-color: aquamarine;
+    height: 4rem;
+    width: 12rem;
+    margin: 0.5rem;
+}
+
+.scoreboard--div {
+    display: none;
+}
+
+.ongoingGame--div {
+    display: none;
+}
+
+/* Score board Interface */
+
+.scoreboard--div {
+    display: none;
+    flex-direction: column;
+}
+
+.scoreboard--div > ul {
+    border: 1px dashed orange;
+    padding: 4rem;
+}

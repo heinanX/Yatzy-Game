@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yatzy Fun</title>
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <link rel="stylesheet" href="styling/styles.css">
+    <link rel="stylesheet" href="styling/mediaQueries.css">
+    <script src="dist/script.js" defer></script>
+    <script src="dist/gameScript.js" defer></script>
+</head>
+<body>
+    <div class="startPage--div">
+        <button onclick="newGame()">New Game</button>
+        <button onclick="showScore()">Top 10 players score</button>
+
+    </div>
+
+    <div class="gameSetup--div">
+        <div class="addPlayer--div">
+            <ul class="playerInfo"></ul>
+            <section class="center--row--aligned ">
+                <input type="text" class="playerInput" placeholder="Add Player Here">
+                <span class="material-symbols-outlined add--btn">add</span>
+            </section>
+        </div>
+
+        <div class="chooseYatzy--div">
+            <h1>Choose Your Yatzy</h1>
+            <div class="container--btns">
+                <button onclick="playYatzi()">Yatzy</button>
+                <button onclick="playMaxiYatzi()"> Maxi Yatzy</button>
+            </div>
+        </div>
+        <button class="return--btn" onclick="init()"><span class="material-symbols-outlined">keyboard_return</span>return</button>
+    </div>
+
+    <div class="scoreboard--div">
+        <ul></ul>
+        <button class="return--btn" onclick="init()"><span class="material-symbols-outlined">keyboard_return</span>return</button>
+    </div>
+
+    <div class="ongoingGame--div">
+
+
+    </div>
+</body>
+</html>
