@@ -48,13 +48,20 @@ font-weight: 700;
 
 .startPage--div {
     display: flex;
-    flex-direction: row;
-    gap: 2rem;
+    flex-direction: column;
+    gap: 1rem;
 }
-.startPage--div > button {
-    background-color: aquamarine;
+.startPage--div > span > button {
+    background-color: rgb(198, 245, 229);
     height: 10rem;
     width: 10rem;
+    border-radius: 15px;
+    border: none;
+    font-size: 16pt;
+}
+.startPage--div > span > button:hover {
+    background-color: rgb(136, 192, 173);
+    font-weight: 700;
 }
 
 /* Set up new game interface */
