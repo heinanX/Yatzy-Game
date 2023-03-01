@@ -3,5 +3,8 @@ const playYatzi = () => {
 }
 
 const playMaxiYatzi= () => {
-    console.log('Maxiyatzy')
+    startpage.style.display = 'none'
+    gameSetup.style.display = 'none'
+    scoreBoard.style.display = 'none'
+    ongoingGame.style.display = 'flex'
 }

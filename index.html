@@ -6,32 +6,37 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Yatzy Fun</title>
 
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Kavoon&display=swap" rel="stylesheet">
+
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
     <link rel="stylesheet" href="styling/styles.css">
     <link rel="stylesheet" href="styling/mediaQueries.css">
     <script src="dist/script.js" defer></script>
     <script src="dist/gameScript.js" defer></script>
+
 </head>
 <body>
     <div class="startPage--div">
-        <h2>Welcome to Crazy Yatzy <span class="material-symbols-outlined">casino</span></h2>
-        <span class="center--row--aligned">
+        <h1 id="welcomeTxt">Welcome to<br> Yatzy Fun!</h1>
+        <span class="bottom--row--aligned">
             <button onclick="newGame()">New Game</button>
-            <button onclick="showScore()">Top 10 <br> players score</button>
+            <button id="dice1" onclick="showScore()">Top 10 <br> players score</button>
         </span>
     </div>
 
     <div class="gameSetup--div">
         <div class="addPlayer--div">
             <ul class="playerInfo"></ul>
-            <section class="center--row--aligned ">
+            <section class="center--row--aligned addPlayer--section">
                 <input type="text" class="playerInput" placeholder="Add Player Here">
                 <span class="material-symbols-outlined add--btn">add</span>
             </section>
         </div>
 
         <div class="chooseYatzy--div">
-            <h1>Choose Your Yatzy</h1>
+            <h1 id="chooseTitle">Choose Your Yatzy</h1>
             <div class="container--btns">
                 <button onclick="playYatzi()">Yatzy</button>
                 <button onclick="playMaxiYatzi()"> Maxi Yatzy</button>
@@ -46,8 +51,40 @@
     </div>
 
     <div class="ongoingGame--div">
+        <div class="scorekeeper--div">
+            <table>
+                <tbody>
+                    <td>Player</td>
+                    <td>Ones</td>
+                    <td>Twos</td>
+                    <td>Threes</td>
+                    <td>Fours</td>
+                    <td>FIves</td>
+                    <td>Sixes</td>
+                    <td>Total</td>
+                    <td>Bonus</td>
+                    <td>Pair</td>
+                    <td>Two Pair</td>
+                    <td>3 of a kind</td>
+                    <td>4 of a kind</td>
+                    <td>5 of a kind</td>
+                    <td>Small Straight</td>
+                    <td>Large Straight</td>
+                    <td>Full House</td>
+                    <td>Chance</td>
+                    <td>Yatzy</td>
+                    <td>Total</td>
+                </tbody>
+            </table>
+        </div>
+        <div class="gameboard--div">
+            <div class="savedDice--div"></div>
+            <div class="diceBoard--div"></div>
+            <button class="throwDice"></button>
+        </div>
 
 
+        <button class="return--btn" onclick="init()"><span class="material-symbols-outlined">keyboard_return</span>return</button>
     </div>
 </body>
 </html>
