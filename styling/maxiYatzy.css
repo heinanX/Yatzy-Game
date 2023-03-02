@@ -1,0 +1,98 @@
+.ongoingGame--div {
+    display: none;
+    flex-direction: row;
+    align-items: center;
+}
+
+table {
+    font-family: arial, sans-serif;
+    font-size: 9pt;
+    border-collapse: collapse;
+    width: 100%;
+  }
+  
+  td, th {
+    border: 1px solid #242424;
+    text-align: left;
+    padding: 4px;
+  }
+  
+  tr:nth-child(even) {
+    background-color: #92c7b7;
+  }
+
+  tr:nth-child(1) {
+    font-size: 12pt;
+  }
+
+  .player {
+    font-weight: 700;
+    width: 5rem;
+  }
+
+  table tbody tr td:nth-child(1) {
+    font-weight: 700;
+  }
+
+  .gameboard--div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 1rem;
+
+    background-color: rgb(16, 53, 58);
+    margin-left: 1rem;
+  }
+
+  .savedDice--div {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    background-color: rgb(18, 45, 51);
+    height: 3.5rem;
+    width: 25rem;
+  }
+
+  .savedDice--div div {
+    border: 1px solid orange;
+    height: 3rem;
+    width: 3rem;
+    border-radius: 5px;
+  }
+
+  .diceBoard--div {
+    position: relative;
+    border: 1px solid whitesmoke;
+    height: 25rem;
+    width: 30rem;
+  }
+
+  .diceBoard--div div {
+    position: absolute;
+    height: 3rem;
+    width: 3rem;
+    border: 1px solid whitesmoke;
+  }
+
+  .throwDice {
+    border: 1px solid black;
+    border-radius: 5px;
+    height: 2rem;
+    width: 6rem;
+  }
+
+  .throwDice:hover {
+    color: whitesmoke;
+    background-color: darkslategray;
+    border: 2px solid black;
+  }
+
+  footer {
+    position: absolute;
+    bottom: 0;
+    margin-bottom: 1rem;
+  }

@@ -1,10 +1,18 @@
 "use strict";
-const playYatzi = () => {
-    console.log('yatzy');
+const throwDice = () => {
+    console.log(currentPlayers);
 };
-const playMaxiYatzi = () => {
-    startpage.style.display = 'none';
-    gameSetup.style.display = 'none';
-    scoreBoard.style.display = 'none';
-    ongoingGame.style.display = 'flex';
+const generateDice = (game) => {
+    const diceOne = document.createElement('div');
+    const diceTwo = document.createElement('div');
+    const diceThree = document.createElement('div');
+    const diceFour = document.createElement('div');
+    const diceFive = document.createElement('div');
+    diceBoard.append(diceOne, diceTwo, diceThree, diceFour, diceFive);
+    if (game === 'MaxiYathzee') {
+        const diceSix = document.createElement('div');
+        diceBoard.append(diceSix);
+        const AddSavedDice = document.createElement('div');
+        savedDice.appendChild(AddSavedDice);
+    }
 };

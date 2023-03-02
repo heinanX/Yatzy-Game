@@ -4,6 +4,8 @@ const scoreBoard = document.querySelector('.scoreboard--div') as HTMLDivElement
 const ongoingGame = document.querySelector('.ongoingGame--div') as HTMLDivElement
 const addplayerDiv = document.querySelector('.addPlayer--div') as HTMLDivElement
 const addplayerSec = document.querySelector('.addPlayer--section') as HTMLDivElement
+const savedDice = document.querySelector('.savedDice--div') as HTMLDivElement
+const diceBoard = document.querySelector('.diceBoard--div') as HTMLDivElement
 
 const warning = document.createElement('p')
 warning.style.color = 'red'
@@ -50,8 +52,8 @@ const addPlayer = () => {
     warning.innerHTML = ''
     const match = currentPlayers.find(element => element === playerInput.value)
     if (!match) {
-        currentPlayers.push(playerInput.value)
-        if (currentPlayers.length <= 6) {
+        if (currentPlayers.length < 4) {
+            currentPlayers.push(playerInput.value)
             logPlayers()
             
         } else {
@@ -78,3 +80,22 @@ const deletePlayer = (player: string) => {
     logPlayers()
 }
 
+const playYatzi = () => {
+    startpage.style.display = 'none'
+    gameSetup.style.display = 'none'
+    scoreBoard.style.display = 'none'
+    ongoingGame.style.display = 'flex'
+    const yahtzee = 'Yathzee'
+    createPlayers()
+    generateDice(yahtzee)
+}
+
+const playMaxiYatzi= () => {
+    startpage.style.display = 'none'
+    gameSetup.style.display = 'none'
+    scoreBoard.style.display = 'none'
+    ongoingGame.style.display = 'flex'
+    const yahtzee = 'MaxiYathzee'
+    createPlayers()
+    generateDice(yahtzee)
+}
