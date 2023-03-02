@@ -95,6 +95,7 @@ const playMaxiYatzi= () => {
     gameSetup.style.display = 'none'
     scoreBoard.style.display = 'none'
     ongoingGame.style.display = 'flex'
+    //diceBoard.style.display = 'relative'
     const yahtzee = 'MaxiYathzee'
     createPlayers()
     generateDice(yahtzee)

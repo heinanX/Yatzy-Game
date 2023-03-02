@@ -58,6 +58,7 @@ table {
   }
 
   .savedDice--div div {
+   
     border: 1px solid orange;
     height: 3rem;
     width: 3rem;
@@ -65,18 +66,29 @@ table {
   }
 
   .diceBoard--div {
-    position: relative;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: repeat(5, 1fr);
+    grid-gap: 6px;
+    padding: 2rem;
     border: 1px solid whitesmoke;
     height: 25rem;
     width: 30rem;
   }
 
   .diceBoard--div div {
-    position: absolute;
     height: 3rem;
     width: 3rem;
-    border: 1px solid whitesmoke;
+    border: 1px solid rgb(180, 53, 53);
+    background-color: whitesmoke;
+
   }
+/*   .diceBoard--div div:nth-child(2){
+    border: 3px solid greenyellow;
+    grid-column: 5;
+    grid-row: 2;
+
+  } */
 
   .throwDice {
     border: 1px solid black;
