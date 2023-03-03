@@ -6,6 +6,8 @@ const addplayerDiv = document.querySelector('.addPlayer--div') as HTMLDivElement
 const addplayerSec = document.querySelector('.addPlayer--section') as HTMLDivElement
 const savedDice = document.querySelector('.savedDice--div') as HTMLDivElement
 const diceBoard = document.querySelector('.diceBoard--div') as HTMLDivElement
+const hiddendice = document.querySelector('.hiddenDice') as HTMLDivElement
+const allDice = diceBoard.querySelectorAll('div')
 
 const warning = document.createElement('p')
 warning.style.color = 'red'
@@ -85,9 +87,11 @@ const playYatzi = () => {
     gameSetup.style.display = 'none'
     scoreBoard.style.display = 'none'
     ongoingGame.style.display = 'flex'
-    const yahtzee = 'Yathzee'
+    hiddendice.style.display = 'none'
     createPlayers()
-    generateDice(yahtzee)
+    allDice.forEach((dice) => {
+        dice.addEventListener('click', () => {save(dice)})
+    })
 }
 
 const playMaxiYatzi= () => {
@@ -95,8 +99,14 @@ const playMaxiYatzi= () => {
     gameSetup.style.display = 'none'
     scoreBoard.style.display = 'none'
     ongoingGame.style.display = 'flex'
-    //diceBoard.style.display = 'relative'
-    const yahtzee = 'MaxiYathzee'
     createPlayers()
-    generateDice(yahtzee)
+    hiddendice.style.display = 'block'
+    allDice.forEach((dice) => {
+        dice.addEventListener('click', () => {save(dice)})
+    })
+    playerturn()
 }
+const playerturn= () => {
+console.log(currentPlayers[0])
+}
+

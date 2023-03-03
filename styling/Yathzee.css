@@ -55,6 +55,7 @@ table {
     background-color: rgb(18, 45, 51);
     height: 3.5rem;
     width: 25rem;
+    font-size: 2pt;
   }
 
   .savedDice--div div {
@@ -79,16 +80,13 @@ table {
   .diceBoard--div div {
     height: 3rem;
     width: 3rem;
+    font-size: 2pt;
+    color: white;
     border: 1px solid rgb(180, 53, 53);
-    background-color: whitesmoke;
+    background-image: url('../assets/dice-6.png');
+    background-size: contain;
 
   }
-/*   .diceBoard--div div:nth-child(2){
-    border: 3px solid greenyellow;
-    grid-column: 5;
-    grid-row: 2;
-
-  } */
 
   .throwDice {
     border: 1px solid black;
