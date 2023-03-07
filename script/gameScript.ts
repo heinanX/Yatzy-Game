@@ -1,7 +1,43 @@
+const numberOfPlayers = playersFromLS.length;
+let currentPlayer = 0;
 const currentScore: number[] = []
+const activePlayerLS = localStorage.getItem('activePlayer') || '[]'
+
+
+//const players [ {player, scoreSheet}, {player, scoreSheet}, {player, scoreSheet}]
+const scoreSheet = {
+    ones: null,
+    twos: null,
+    threes: null,
+    fours: null,
+    fives: null,
+    sixes: null,
+    total: null,
+    bonus: null,
+    threeKind: null,
+    fourKind: null,
+    fullHouse: null,
+    smStraight: null,
+    laStraight: 20,
+    chance: null,
+    yathzee: null,
+    grandTotal: null
+}
+
+const playerturn= () => {
+    
+
+    console.log(activePlayerLS)
+/*     const maxTurns = 3
+
+    for (let i = 0; maxTurns > i; i++) {
+        throwDice()
+        console.log(i)
+    } */
+}
+
 
 const throwDice = () => {
-
     allDice.forEach((dice) => {
 
         if (dice.parentNode === diceBoard) {
@@ -27,11 +63,9 @@ const save = (dice: HTMLDivElement) => {
     if (dice.parentNode === diceBoard) {
         savedDice.appendChild(dice)
         currentScore.push(number)
-        console.log(currentScore)
     } else {
         const index = currentScore.indexOf(number)
         currentScore.splice(index, 1)
         diceBoard.appendChild(dice)
-        console.log(currentScore)
     }
 }

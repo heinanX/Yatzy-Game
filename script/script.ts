@@ -20,7 +20,17 @@ playerInput.addEventListener('keydown', (event) => {
     if (event.key === 'Enter') addPlayer()
 })
 
-const currentPlayers: string[] = []
+const players: object[] = []
+interface Player {
+    name: string;
+    score: number;
+}
+
+if (!localStorage.getItem('players')) {
+    localStorage.setItem('players', JSON.stringify(players));
+}
+const playersFromLS: Player[] = JSON.parse(localStorage.getItem('players') || '[]');
+
 
 const init = () => {
     startpage.style.display = 'flex'
@@ -32,30 +42,34 @@ const init = () => {
 const newGame = () => {
     startpage.style.display = 'none'
     gameSetup.style.display = 'flex'
+    logPlayers()
 }
+
 const logPlayers = () => {
     playerInfo.innerText = ''
-    for (const item of currentPlayers) {
+    for (const item of playersFromLS) {
         const span = document.createElement('span')
         span.setAttribute('class', 'material-symbols-outlined')
         span.setAttribute('id', 'editPen')
         span.addEventListener('click', () => { deletePlayer(item)})
         const li = document.createElement('li')
-        const index = currentPlayers.indexOf(item)
-        li.innerHTML = `Player ${index +1} ${item}`
+        const index = playersFromLS.indexOf(item)
+        li.innerHTML = `Player ${index +1} ${item.name}`
         span.innerText = 'delete'
         li.appendChild(span)
         playerInfo.append(li)
-        console.log(currentPlayers.length)
     }
 }
 
 const addPlayer = () => {
     warning.innerHTML = ''
-    const match = currentPlayers.find(element => element === playerInput.value)
+    const match = playersFromLS.find(element => element.name == playerInput.value)
     if (!match) {
-        if (currentPlayers.length < 4) {
-            currentPlayers.push(playerInput.value)
+        if (playersFromLS.length < 4) {
+            const newPlayer: Player = { name: playerInput.value, score: 0 };
+            playersFromLS.push(newPlayer);
+            console.log(playersFromLS)
+            localStorage.setItem('players', JSON.stringify(playersFromLS))
             logPlayers()
             
         } else {
@@ -76,9 +90,10 @@ const showScore = () => {
     scoreBoard.style.display = 'flex'
     
 }
-const deletePlayer = (player: string) => {
-    const index = currentPlayers.indexOf(player)
-    currentPlayers.splice(index, 1)
+const deletePlayer = (player: any) => {
+    const index = playersFromLS.indexOf(player)
+    playersFromLS.splice(index, 1)
+    localStorage.setItem("players", JSON.stringify(playersFromLS))
     logPlayers()
 }
 
@@ -92,6 +107,8 @@ const playYatzi = () => {
     allDice.forEach((dice) => {
         dice.addEventListener('click', () => {save(dice)})
     })
+    localStorage.setItem("activePlayer", playersFromLS[0].name)
+    playerturn()
 }
 
 const playMaxiYatzi= () => {
@@ -104,9 +121,5 @@ const playMaxiYatzi= () => {
     allDice.forEach((dice) => {
         dice.addEventListener('click', () => {save(dice)})
     })
-    playerturn()
+    localStorage.setItem("activePlayer", playersFromLS[0].name)
 }
-const playerturn= () => {
-console.log(currentPlayers[0])
-}
-

@@ -21,7 +21,8 @@ const total = document.querySelector('.total') as HTMLTableRowElement
 
 
 const createPlayers = () => {
-    currentPlayers.forEach(element => {
+    
+    playersFromLS.forEach(element => {
         const td1 = document.createElement('td')
         td1.setAttribute('class', 'player')
         const td2 = document.createElement('td')
@@ -43,7 +44,7 @@ const createPlayers = () => {
         const td18 = document.createElement('td')
         const td19 = document.createElement('td')
         const td20 = document.createElement('td')
-        td1.innerText = element
+        td1.innerText = element.name
         player.append(td1)
         ones.append(td2)
         twos.append(td3)
