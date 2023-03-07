@@ -71,13 +71,8 @@ const playerturn = () => {
             console.log('move 3')
             console.log(myarray)
             throwDice()
-            myarray.splice(0, 2)
+            myarray.splice(0, currentScore.length)
 
-            if (currentPlayer === 0 || currentPlayer === 1 || currentPlayer === 2 ) {
-                currentPlayer++;
-            }
-            console.log(currentPlayer)
-            console.log('last ' + myarray)
             console.log(currentScore.reduce((sum, die) => sum + die, 0))
             
         break;
@@ -123,3 +118,20 @@ const save = (dice: HTMLDivElement) => {
         diceBoard.appendChild(dice)
     }
 }
+
+const saveScore = (cell: HTMLTableCellElement) => {
+    const sum = currentScore.reduce((sum, die) => sum + die, 0)
+    cell.innerText = sum.toString()
+    if (currentPlayer < numberOfPlayers -1) {
+        currentPlayer++;
+        localStorage.setItem("activePlayer", playersFromLS[currentPlayer].name)
+        console.log('this adds a number to ' + currentPlayer);
+        
+    } else {
+    currentPlayer = 0
+    localStorage.setItem("activePlayer", playersFromLS[currentPlayer].name)
+    console.log('this resets numbers ' + currentPlayer);
+}
+
+}
+
