@@ -108,7 +108,6 @@ const playYatzi = () => {
         dice.addEventListener('click', () => {save(dice)})
     })
     localStorage.setItem("activePlayer", playersFromLS[0].name)
-    playerturn()
 }
 
 const playMaxiYatzi= () => {

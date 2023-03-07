@@ -1,8 +1,16 @@
 const numberOfPlayers = playersFromLS.length;
-let currentPlayer = 0;
 const currentScore: number[] = []
 const activePlayerLS = localStorage.getItem('activePlayer') || '[]'
+//const turnFromLS = localStorage.getItem('currentTurn') || '[]';
 
+const maxPlayers = numberOfPlayers;
+const maxMoves = 3;
+
+let currentPlayer = 0;
+let currentTurn = 1;
+let movesLeft = maxMoves;
+
+const myarray: number[] = []
 
 //const players [ {player, scoreSheet}, {player, scoreSheet}, {player, scoreSheet}]
 const scoreSheet = {
@@ -22,18 +30,6 @@ const scoreSheet = {
     chance: null,
     yathzee: null,
     grandTotal: null
-}
-
-const playerturn= () => {
-    
-
-    console.log(activePlayerLS)
-/*     const maxTurns = 3
-
-    for (let i = 0; maxTurns > i; i++) {
-        throwDice()
-        console.log(i)
-    } */
 }
 
 
@@ -56,6 +52,64 @@ const throwDice = () => {
     })
 }
 
+
+const playerturn = () => {
+    switch (myarray.length) {
+        case 0:
+            myarray.push(1) 
+            throwDice()
+            console.log('move 1')
+            console.log(myarray)
+        break;
+        case 1:
+            console.log('move 2')
+            console.log(myarray)
+            myarray.push(2)
+            throwDice()
+        break;
+        case 2:
+            console.log('move 3')
+            console.log(myarray)
+            throwDice()
+            myarray.splice(0, 2)
+
+            if (currentPlayer === 0 || currentPlayer === 1 || currentPlayer === 2 ) {
+                currentPlayer++;
+            }
+            console.log(currentPlayer)
+            console.log('last ' + myarray)
+            console.log(currentScore.reduce((sum, die) => sum + die, 0))
+            
+        break;
+    }
+
+    /* if (myarray.length === 0) {
+  
+    }
+    else if (myarray.length === 1) {
+
+    } else if (myarray.length === 2) {
+        console.log('move 3')
+        console.log('before ' + myarray)
+        throwDice()
+        myarray.splice(0, 2)
+        console.log('after ' + myarray)
+        if (currentPlayer === 0 || currentPlayer === 1 || currentPlayer === 2 ) {
+            currentPlayer++;
+        }
+        console.log(currentTurn)
+    } */
+     
+
+/*     movesLeft = maxMoves
+    console.log('second obsticle' + movesLeft)
+    currentPlayer = (currentPlayer + 1) % maxPlayers;
+    console.log('new current Player' + playersFromLS[currentPlayer].name)
+    //localStorage.setItem("activePlayer", playersFromLS[currentPlayer].name)
+    if (currentPlayer === 0) {
+      currentTurn++;
+    } */
+}
 
 const save = (dice: HTMLDivElement) => {
     const number: number = parseInt(dice.innerText)
