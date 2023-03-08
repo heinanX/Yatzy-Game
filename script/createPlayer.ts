@@ -9,6 +9,9 @@ const categories = [
     { name: 'Sixes',   scores: Array(numberOfPlayers).fill(null) },
     { name: 'Total',   scores: Array(numberOfPlayers).fill(null) },
     { name: 'Bonus',   scores: Array(numberOfPlayers).fill(null) },
+    { name: 'One Pair', scores: Array(numberOfPlayers).fill(null) },
+    { name: 'Two Pair', scores: Array(numberOfPlayers).fill(null) },
+    { name: 'Bonus',   scores: Array(numberOfPlayers).fill(null) },
     { name: 'Three of a Kind', scores: Array(numberOfPlayers).fill(null) },
     { name: 'Four of a Kind',  scores: Array(numberOfPlayers).fill(null) },
     { name: 'Full House',      scores: Array(numberOfPlayers).fill(null) },
@@ -41,13 +44,15 @@ const createPlayers = () => {
     const row = document.createElement('tr');
     const categoryCell = document.createElement('td');
     categoryCell.setAttribute('class', 'player')
+    row.setAttribute('id', `${category.name}`)
     categoryCell.textContent = category.name;
     row.appendChild(categoryCell);
-
     playersFromLS.forEach(element => {
+        
         const scoreData = document.createElement('td');
-        scoreData.setAttribute('class', 'score')
+        scoreData.setAttribute('class', `score ${element.name}` )
         scoreData.setAttribute('id', `${element.name}`)
+        
         scoreData.textContent = '';
         row.appendChild(scoreData);
     })
@@ -57,7 +62,7 @@ const createPlayers = () => {
 
     // Add event listeners to the score cells
     const scoreData = document.querySelectorAll('.score') as NodeListOf<HTMLTableCellElement>;
-    scoreData.forEach(cell => {
+    scoreData.forEach((cell) => {
     cell.addEventListener('click', () => { checkCellID(cell) });
     });
 }

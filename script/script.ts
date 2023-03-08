@@ -35,6 +35,8 @@ interface Player {
         sixes: null,
         total: null,
         bonus: null,
+        onePair: null,
+        twoPair: null,
         threeKind: null,
         fourKind: null,
         fullHouse: null,
@@ -97,6 +99,8 @@ const addPlayer = () => {
                 sixes: null,
                 total: null,
                 bonus: null,
+                onePair: null,
+                twoPair: null,
                 threeKind: null,
                 fourKind: null,
                 fullHouse: null,
@@ -124,9 +128,24 @@ const addPlayer = () => {
     playerInput.value = ''
 }
 
+// ------ experiment
+
+/* const countTotal = () => {
+    const player = playersFromLS[0].scoreSheet
+    const limit = 50
+    if (!player.ones && player.twos && player.threes && player.fours && player.fives && player.sixes === null ){
+     const sum = player.ones + player.twos + player.threes + player.fours + player.fives + player.sixes
+     if (sum > limit.toString()) {
+        player.bonus = 50
+     }
+    }
+} */
+// ------
+
 const showScore = () => {
     startpage.style.display = 'none'
     scoreBoard.style.display = 'flex'
+    //countTotal()
     
 }
 const deletePlayer = (player: any) => {

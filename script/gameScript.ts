@@ -86,9 +86,13 @@ const checkCellStatus = (cell: HTMLTableCellElement) => {
         console.log('Oops. Lemme guess ... you slipped ;)')
     }
 }
+
 // -------
 
 const saveScore = (cell: HTMLTableCellElement) => {
+    const prntNode =  cell.parentNode! as HTMLTableRowElement
+    const idrecieved = prntNode.id
+    console.log(idrecieved)
     const sum = currentScore.reduce((sum, die) => sum + die, 0)
     cell.innerText = sum.toString()
     if (currentPlayer < numberOfPlayers -1) {
