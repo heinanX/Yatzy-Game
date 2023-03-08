@@ -1,108 +1,122 @@
 .ongoingGame--div {
-    display: none;
-    flex-direction: row;
-    align-items: center;
+  display: none;
+  flex-direction: row;
+  align-items: center;
 }
 
 table {
-    font-family: arial, sans-serif;
-    font-size: 9pt;
-    border-collapse: collapse;
-    width: 100%;
-  }
+  font-family: arial, sans-serif;
+  font-size: 9pt;
+  border-collapse: collapse;
+  width: 100%;
+}
   
-  td, th {
-    border: 1px solid #242424;
-    text-align: left;
-    padding: 4px;
-  }
+td, th {
+  border: 1px solid #242424;
+  text-align: left;
+  padding: 4px;
+}
   
-  tr:nth-child(even) {
-    background-color: #92c7b7;
-  }
+tr:nth-child(even) {
+  background-color: #92c7b7;
+}
 
-  tr:nth-child(1) {
-    font-size: 12pt;
-  }
+tr:nth-child(1) {
+  font-size: 12pt;
+}
 
-  .player {
-    font-weight: 700;
-    width: 5rem;
-  }
+.player {
+  font-weight: 700;
+  width: 7rem;
+}
 
-  table tbody tr td:nth-child(1) {
-    font-weight: 700;
-  }
+table tbody tr td:nth-child(1) {
+  font-weight: 700;
+}
 
-  .gameboard--div {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 0.5rem;
-    padding: 1rem;
+.scorekeeper--div div {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  height: 2rem;
+  padding: 0 1rem 2rem 1rem;
+}
 
-    background-color: rgb(16, 53, 58);
-    margin-left: 1rem;
-  }
+#movesMade {
+  padding-top: 3px;
+  font-size: 12pt;
+}
 
-  .savedDice--div {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    gap: 1rem;
-    background-color: rgb(18, 45, 51);
-    height: 3.5rem;
-    width: 25rem;
-    font-size: 2pt;
-  }
+.gameboard--div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 1rem;
 
-  .savedDice--div div {
-   
-    border: 1px solid orange;
-    height: 3rem;
-    width: 3rem;
-    border-radius: 5px;
-  }
+  background-color: rgb(16, 53, 58);
+  margin-left: 1rem;
+}
 
-  .diceBoard--div {
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    grid-template-rows: repeat(5, 1fr);
-    grid-gap: 6px;
-    padding: 2rem;
-    border: 1px solid whitesmoke;
-    height: 25rem;
-    width: 30rem;
-  }
+.savedDice--div {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  background-color: rgb(18, 45, 51);
+  height: 3.5rem;
+  width: 25rem;
+  font-size: 2pt;
+}
 
-  .diceBoard--div div {
-    height: 3rem;
-    width: 3rem;
-    font-size: 2pt;
-    color: white;
-    border: 1px solid rgb(180, 53, 53);
-    background-image: url('../assets/dice-6.png');
-    background-size: contain;
+.savedDice--div div {
+  
+  border: 1px solid orange;
+  height: 3rem;
+  width: 3rem;
+  border-radius: 5px;
+}
 
-  }
+.diceBoard--div {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-template-rows: repeat(5, 1fr);
+  grid-gap: 6px;
+  padding: 2rem;
+  border: 1px solid whitesmoke;
+  height: 25rem;
+  width: 30rem;
+}
 
-  .throwDice {
-    border: 1px solid black;
-    border-radius: 5px;
-    height: 2rem;
-    width: 6rem;
-  }
+.diceBoard--div div {
+  height: 3rem;
+  width: 3rem;
+  font-size: 2pt;
+  color: white;
+  border: 1px solid rgb(180, 53, 53);
+  background-image: url('../assets/dice-6.png');
+  background-size: contain;
 
-  .throwDice:hover {
-    color: whitesmoke;
-    background-color: darkslategray;
-    border: 2px solid black;
-  }
+}
 
-  footer {
-    position: absolute;
-    bottom: 0;
-    margin-bottom: 1rem;
-  }
+.throwDice {
+  border: 1px solid black;
+  border-radius: 5px;
+  height: 2rem;
+  width: 6rem;
+}
+
+.throwDice:hover {
+  color: whitesmoke;
+  background-color: darkslategray;
+  border: 2px solid black;
+}
+
+footer {
+  position: absolute;
+  bottom: 0;
+  margin-bottom: 1rem;
+}

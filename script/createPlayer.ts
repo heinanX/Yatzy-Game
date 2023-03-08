@@ -29,6 +29,7 @@ const createPlayers = () => {
     for (const player of playersFromLS) {
     const playerName = player.name;
     const playerCell = document.createElement('th');
+    playerCell.style.width = '5rem';
     playerCell.textContent = playerName;
     headerRow.appendChild(playerCell);
     }
@@ -39,13 +40,15 @@ const createPlayers = () => {
     categories.forEach(category => {
     const row = document.createElement('tr');
     const categoryCell = document.createElement('td');
+    categoryCell.setAttribute('class', 'player')
     categoryCell.textContent = category.name;
     row.appendChild(categoryCell);
 
     playersFromLS.forEach(element => {
         const scoreData = document.createElement('td');
         scoreData.setAttribute('class', 'score')
-        scoreData.textContent = '-';
+        scoreData.setAttribute('id', `${element.name}`)
+        scoreData.textContent = '';
         row.appendChild(scoreData);
     })
 

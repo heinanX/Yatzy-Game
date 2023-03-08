@@ -1,32 +1,9 @@
 "use strict";
 const numberOfPlayers = playersFromLS.length;
-const currentScore = [];
-const activePlayerLS = localStorage.getItem('activePlayer') || '[]';
-const maxPlayers = numberOfPlayers;
-const maxMoves = 3;
 let currentPlayer = 0;
 let currentTurn = 1;
-let movesLeft = maxMoves;
-const myarray = [];
-//const players [ {player, scoreSheet}, {player, scoreSheet}, {player, scoreSheet}]
-const scoreSheet = {
-    ones: null,
-    twos: null,
-    threes: null,
-    fours: null,
-    fives: null,
-    sixes: null,
-    total: null,
-    bonus: null,
-    threeKind: null,
-    fourKind: null,
-    fullHouse: null,
-    smStraight: null,
-    laStraight: 20,
-    chance: null,
-    yathzee: null,
-    grandTotal: null
-};
+const currentScore = [];
+const movesMade = [];
 const throwDice = () => {
     allDice.forEach((dice) => {
         if (dice.parentNode === diceBoard) {
@@ -43,55 +20,37 @@ const throwDice = () => {
     });
 };
 const playerturn = () => {
-    switch (myarray.length) {
+    switch (movesMade.length) {
         case 0:
-            myarray.push(1);
+            movesMade.push(1);
             throwDice();
             console.log('move 1');
-            console.log(myarray);
+            disMovesMade.style.fontSize = '35pt';
+            disMovesMade.style.color = 'darkgreen';
+            disMovesMade.innerText = '•';
             break;
         case 1:
             console.log('move 2');
-            console.log(myarray);
-            myarray.push(2);
+            console.log(movesMade);
+            movesMade.push(2);
             throwDice();
+            disMovesMade.style.color = 'orange';
+            disMovesMade.innerText = '••';
             break;
         case 2:
             console.log('move 3');
-            console.log(myarray);
+            console.log(movesMade);
             throwDice();
+            disMovesMade.style.color = 'darkred';
+            disMovesMade.innerText = '•••';
             console.log(currentScore.reduce((sum, die) => sum + die, 0));
             break;
     }
-    /* if (myarray.length === 0) {
-  
-    }
-    else if (myarray.length === 1) {
-
-    } else if (myarray.length === 2) {
-        console.log('move 3')
-        console.log('before ' + myarray)
-        throwDice()
-        myarray.splice(0, 2)
-        console.log('after ' + myarray)
-        if (currentPlayer === 0 || currentPlayer === 1 || currentPlayer === 2 ) {
-            currentPlayer++;
-        }
-        console.log(currentTurn)
-    } */
-    /*     movesLeft = maxMoves
-        console.log('second obsticle' + movesLeft)
-        currentPlayer = (currentPlayer + 1) % maxPlayers;
-        console.log('new current Player' + playersFromLS[currentPlayer].name)
-        //localStorage.setItem("activePlayer", playersFromLS[currentPlayer].name)
-        if (currentPlayer === 0) {
-          currentTurn++;
-        } */
 };
 const save = (dice) => {
     const number = parseInt(dice.innerText);
     if (dice.innerHTML === "")
-        return console.log('empty');
+        return console.log('No cheating, Pumpkin Eater!');
     if (dice.parentNode === diceBoard) {
         savedDice.appendChild(dice);
         currentScore.push(number);
@@ -115,9 +74,19 @@ const saveScore = (cell) => {
         localStorage.setItem("activePlayer", playersFromLS[currentPlayer].name);
         console.log('this resets numbers ' + currentPlayer);
     }
+    // ----- Goes through list of divs and appends them back to diceBoard and empties their content.
     allDice.forEach(dice => {
         diceBoard.append(dice);
+        dice.innerHTML = "";
     });
-    myarray.splice(0, currentScore.length);
+    // ----- Empties array that keeps track of moves and current score
+    movesMade.splice(0, currentScore.length);
     currentScore.splice(0, currentScore.length);
+    // ----- Retrieves updated ActivePlayer key from LS
+    const activePlayerLS = localStorage.getItem('activePlayer') || '[]';
+    // ----- Resets styles of the P-tag #movesMade from index.html
+    disActivePlayer.innerText = `${activePlayerLS}'s turn`;
+    disMovesMade.style.fontSize = '12pt';
+    disMovesMade.style.color = 'black';
+    disMovesMade.innerText = 'Throw Dice';
 };

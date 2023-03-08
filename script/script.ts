@@ -8,6 +8,9 @@ const savedDice = document.querySelector('.savedDice--div') as HTMLDivElement
 const diceBoard = document.querySelector('.diceBoard--div') as HTMLDivElement
 const hiddendice = document.querySelector('.hiddenDice') as HTMLDivElement
 const allDice = diceBoard.querySelectorAll('div')
+const disActivePlayer = document.querySelector('#activePlayer') as HTMLTitleElement
+const disMovesMade = document.querySelector('#movesMade') as HTMLDivElement
+
 
 const warning = document.createElement('p')
 warning.style.color = 'red'
@@ -23,8 +26,27 @@ playerInput.addEventListener('keydown', (event) => {
 const players: object[] = []
 interface Player {
     name: string;
-    score: number;
+    scoreSheet: {
+        ones: null,
+        twos: null,
+        threes: null,
+        fours: null,
+        fives: null,
+        sixes: null,
+        total: null,
+        bonus: null,
+        threeKind: null,
+        fourKind: null,
+        fullHouse: null,
+        smStraight: null,
+        laStraight: null,
+        chance: null,
+        yathzee: null,
+        grandTotal: null
+    }
 }
+
+
 
 if (!localStorage.getItem('players')) {
     localStorage.setItem('players', JSON.stringify(players));
@@ -66,7 +88,24 @@ const addPlayer = () => {
     const match = playersFromLS.find(element => element.name == playerInput.value)
     if (!match) {
         if (playersFromLS.length < 4) {
-            const newPlayer: Player = { name: playerInput.value, score: 0 };
+            const newPlayer: Player = { name: playerInput.value, scoreSheet:  {
+                ones: null,
+                twos: null,
+                threes: null,
+                fours: null,
+                fives: null,
+                sixes: null,
+                total: null,
+                bonus: null,
+                threeKind: null,
+                fourKind: null,
+                fullHouse: null,
+                smStraight: null,
+                laStraight: null,
+                chance: null,
+                yathzee: null,
+                grandTotal: null
+            }};
             playersFromLS.push(newPlayer);
             console.log(playersFromLS)
             localStorage.setItem('players', JSON.stringify(playersFromLS))
@@ -108,6 +147,9 @@ const playYatzi = () => {
         dice.addEventListener('click', () => {save(dice)})
     })
     localStorage.setItem("activePlayer", playersFromLS[0].name)
+    const activePlayerLS = localStorage.getItem('activePlayer') || '[]'
+    disActivePlayer.innerHTML = `${activePlayerLS}'s turn`
+
 }
 
 const playMaxiYatzi= () => {
@@ -121,4 +163,6 @@ const playMaxiYatzi= () => {
         dice.addEventListener('click', () => {save(dice)})
     })
     localStorage.setItem("activePlayer", playersFromLS[0].name)
+    const activePlayerLS = localStorage.getItem('activePlayer') || '[]'
+    disActivePlayer.innerHTML = `${activePlayerLS}'s turn`
 }

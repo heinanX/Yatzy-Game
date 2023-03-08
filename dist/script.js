@@ -9,6 +9,8 @@ const savedDice = document.querySelector('.savedDice--div');
 const diceBoard = document.querySelector('.diceBoard--div');
 const hiddendice = document.querySelector('.hiddenDice');
 const allDice = diceBoard.querySelectorAll('div');
+const disActivePlayer = document.querySelector('#activePlayer');
+const disMovesMade = document.querySelector('#movesMade');
 const warning = document.createElement('p');
 warning.style.color = 'red';
 const addBtn = document.querySelector('.add--btn');
@@ -55,7 +57,24 @@ const addPlayer = () => {
     const match = playersFromLS.find(element => element.name == playerInput.value);
     if (!match) {
         if (playersFromLS.length < 4) {
-            const newPlayer = { name: playerInput.value, score: 0 };
+            const newPlayer = { name: playerInput.value, scoreSheet: {
+                    ones: null,
+                    twos: null,
+                    threes: null,
+                    fours: null,
+                    fives: null,
+                    sixes: null,
+                    total: null,
+                    bonus: null,
+                    threeKind: null,
+                    fourKind: null,
+                    fullHouse: null,
+                    smStraight: null,
+                    laStraight: null,
+                    chance: null,
+                    yathzee: null,
+                    grandTotal: null
+                } };
             playersFromLS.push(newPlayer);
             console.log(playersFromLS);
             localStorage.setItem('players', JSON.stringify(playersFromLS));
@@ -94,6 +113,8 @@ const playYatzi = () => {
         dice.addEventListener('click', () => { save(dice); });
     });
     localStorage.setItem("activePlayer", playersFromLS[0].name);
+    const activePlayerLS = localStorage.getItem('activePlayer') || '[]';
+    disActivePlayer.innerHTML = `${activePlayerLS}'s turn`;
 };
 const playMaxiYatzi = () => {
     startpage.style.display = 'none';
@@ -106,4 +127,6 @@ const playMaxiYatzi = () => {
         dice.addEventListener('click', () => { save(dice); });
     });
     localStorage.setItem("activePlayer", playersFromLS[0].name);
+    const activePlayerLS = localStorage.getItem('activePlayer') || '[]';
+    disActivePlayer.innerHTML = `${activePlayerLS}'s turn`;
 };
