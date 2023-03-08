@@ -2,7 +2,6 @@
 const numberOfPlayers = playersFromLS.length;
 const currentScore = [];
 const activePlayerLS = localStorage.getItem('activePlayer') || '[]';
-//const turnFromLS = localStorage.getItem('currentTurn') || '[]';
 const maxPlayers = numberOfPlayers;
 const maxMoves = 3;
 let currentPlayer = 0;
@@ -61,7 +60,6 @@ const playerturn = () => {
             console.log('move 3');
             console.log(myarray);
             throwDice();
-            myarray.splice(0, currentScore.length);
             console.log(currentScore.reduce((sum, die) => sum + die, 0));
             break;
     }
@@ -117,4 +115,9 @@ const saveScore = (cell) => {
         localStorage.setItem("activePlayer", playersFromLS[currentPlayer].name);
         console.log('this resets numbers ' + currentPlayer);
     }
+    allDice.forEach(dice => {
+        diceBoard.append(dice);
+    });
+    myarray.splice(0, currentScore.length);
+    currentScore.splice(0, currentScore.length);
 };
