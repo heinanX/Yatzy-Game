@@ -43,13 +43,16 @@ const playerturn = () => {
             disMovesMade.innerText = '••'
         break;
         case 2:
+            movesMade.push(3)
             throwDice()
             disMovesMade.style.color = 'darkred'
             disMovesMade.innerText = '•••'
-
-            console.log(currentScore.reduce((sum, die) => sum + die, 0))
-            
+            //console.log(currentScore.reduce((sum, die) => sum + die, 0))
         break;
+        case 3:
+        console.log('No more moves for you, Honey.')
+        break;
+
     }
 }
 
@@ -103,7 +106,7 @@ const saveScore = (cell: HTMLTableCellElement) => {
         dice.innerHTML = ""
     })
     // ----- Empties array that keeps track of moves and current score
-    movesMade.splice(0, currentScore.length)
+    movesMade.splice(0, movesMade.length)
     currentScore.splice(0, currentScore.length)
     // ----- Retrieves updated ActivePlayer key from LS
     const activePlayerLS = localStorage.getItem('activePlayer') || '[]'
