@@ -32,22 +32,17 @@ const playerturn = () => {
         case 0:
             movesMade.push(1) 
             throwDice()
-            console.log('move 1')
             disMovesMade.style.fontSize = '35pt'
             disMovesMade.style.color = 'darkgreen'
             disMovesMade.innerText = '•'
         break;
         case 1:
-            console.log('move 2')
-            console.log(movesMade)
             movesMade.push(2)
             throwDice()
             disMovesMade.style.color = 'orange'
             disMovesMade.innerText = '••'
         break;
         case 2:
-            console.log('move 3')
-            console.log(movesMade)
             throwDice()
             disMovesMade.style.color = 'darkred'
             disMovesMade.innerText = '•••'
@@ -71,8 +66,24 @@ const save = (dice: HTMLDivElement) => {
     }
 }
 
+// ------ 'MIDDLEWARE' for if saveScore function
 
-
+const checkCellID = (cell: HTMLTableCellElement) => {
+    const activePlayerLS = localStorage.getItem('activePlayer') || '[]'
+    if (cell.getAttribute('id') === `${activePlayerLS}`) {
+        checkCellStatus(cell)
+    } else {
+        alert('oops. Not yours')
+    }
+}
+const checkCellStatus = (cell: HTMLTableCellElement) => {
+    if (cell.innerText === '') {
+        saveScore(cell)
+    } else {
+        console.log('Oops. Lemme guess ... you slipped ;)')
+    }
+}
+// -------
 
 const saveScore = (cell: HTMLTableCellElement) => {
     const sum = currentScore.reduce((sum, die) => sum + die, 0)

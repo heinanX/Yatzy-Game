@@ -58,6 +58,6 @@ const createPlayers = () => {
     // Add event listeners to the score cells
     const scoreData = document.querySelectorAll('.score') as NodeListOf<HTMLTableCellElement>;
     scoreData.forEach(cell => {
-    cell.addEventListener('click', () => { saveScore(cell) });
+    cell.addEventListener('click', () => { checkCellID(cell) });
     });
 }
