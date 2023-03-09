@@ -58,24 +58,24 @@ const addPlayer = () => {
     if (!match) {
         if (playersFromLS.length < 4) {
             const newPlayer = { name: playerInput.value, scoreSheet: {
-                    ones: null,
-                    twos: null,
-                    threes: null,
-                    fours: null,
-                    fives: null,
-                    sixes: null,
-                    total: null,
-                    bonus: null,
-                    onePair: null,
-                    twoPair: null,
-                    threeKind: null,
-                    fourKind: null,
-                    fullHouse: null,
-                    smStraight: null,
-                    laStraight: null,
-                    chance: null,
-                    yathzee: null,
-                    grandTotal: null
+                    'Ones': null,
+                    'Twos': null,
+                    'Threes': null,
+                    'Fours': null,
+                    'Fives': null,
+                    'Sixes': null,
+                    'Total': null,
+                    'Bonus': null,
+                    'One Pair': null,
+                    'Two Pair': null,
+                    'Three of a Kind': null,
+                    'Four of a Kind': null,
+                    'Full House': null,
+                    'Small Straight': null,
+                    'Large Straight': null,
+                    'Yahtzee': null,
+                    'Chance': null,
+                    'Total Score': null
                 } };
             playersFromLS.push(newPlayer);
             console.log(playersFromLS);
@@ -94,22 +94,10 @@ const addPlayer = () => {
     }
     playerInput.value = '';
 };
-// ------ experiment
-/* const countTotal = () => {
-    const player = playersFromLS[0].scoreSheet
-    const limit = 50
-    if (!player.ones && player.twos && player.threes && player.fours && player.fives && player.sixes === null ){
-     const sum = player.ones + player.twos + player.threes + player.fours + player.fives + player.sixes
-     if (sum > limit.toString()) {
-        player.bonus = 50
-     }
-    }
-} */
-// ------
 const showScore = () => {
     startpage.style.display = 'none';
     scoreBoard.style.display = 'flex';
-    //countTotal()
+    calculateTotal();
 };
 const deletePlayer = (player) => {
     const index = playersFromLS.indexOf(player);

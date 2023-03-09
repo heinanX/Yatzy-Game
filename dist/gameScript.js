@@ -1,5 +1,4 @@
 "use strict";
-const numberOfPlayers = playersFromLS.length;
 let currentPlayer = 0;
 let currentTurn = 1;
 const currentScore = [];
@@ -72,7 +71,7 @@ const checkCellID = (cell) => {
 };
 const checkCellStatus = (cell) => {
     if (cell.innerText === '') {
-        saveScore(cell);
+        checkIncomingNumbers(cell);
     }
     else {
         console.log('Oops. Lemme guess ... you slipped ;)');
@@ -80,9 +79,10 @@ const checkCellStatus = (cell) => {
 };
 // -------
 const saveScore = (cell) => {
-    const prntNode = cell.parentNode;
-    const idrecieved = prntNode.id;
-    console.log(idrecieved);
+    const numberOfPlayers = playersFromLS.length;
+    if (currentScore.length === 0) {
+        return console.log('Try throwing the dice first.');
+    }
     const sum = currentScore.reduce((sum, die) => sum + die, 0);
     cell.innerText = sum.toString();
     if (currentPlayer < numberOfPlayers - 1) {
@@ -110,4 +110,59 @@ const saveScore = (cell) => {
     disMovesMade.style.fontSize = '12pt';
     disMovesMade.style.color = 'black';
     disMovesMade.innerText = 'Throw Dice';
+};
+const noValue = (cell) => {
+    const activePlayerLS = localStorage.getItem('activePlayer') || '[]';
+    const numberOfPlayers = playersFromLS.length;
+    if (!(cell.getAttribute('id') === `${activePlayerLS}`)) {
+        alert('oops. Not yours');
+    }
+    if (cell.innerText === '') {
+        currentScore.splice(0, currentScore.length);
+        currentScore.push(0);
+        cell.innerText = '0';
+        const prntNode = cell.parentNode;
+        const idrecieved = prntNode.id;
+        if (idrecieved === 'Ones' || idrecieved === 'Twos' || idrecieved === 'Threes' || idrecieved === 'Fours' || idrecieved === 'Fives' || idrecieved === 'Sixes')
+            addScoreToLS(idrecieved);
+        //cell.innerText = '0'
+        if (currentPlayer < numberOfPlayers - 1) {
+            currentPlayer++;
+            localStorage.setItem("activePlayer", playersFromLS[currentPlayer].name);
+            console.log('this adds a number to ' + currentPlayer);
+        }
+        else {
+            currentPlayer = 0;
+            localStorage.setItem("activePlayer", playersFromLS[currentPlayer].name);
+            console.log('this resets numbers ' + currentPlayer);
+        }
+        allDice.forEach(dice => {
+            diceBoard.append(dice);
+            dice.innerHTML = "";
+        });
+        const UpdatedPlayerLS = localStorage.getItem('activePlayer') || '[]';
+        movesMade.splice(0, movesMade.length);
+        currentScore.splice(0, currentScore.length);
+        disActivePlayer.innerText = `${UpdatedPlayerLS}'s turn`;
+        disMovesMade.style.fontSize = '12pt';
+        disMovesMade.style.color = 'black';
+        disMovesMade.innerText = 'Throw Dice';
+    }
+};
+const calculateTotal = () => {
+    const activePlayerLS = localStorage.getItem('activePlayer') || '[]';
+    playersFromLS.forEach(player => {
+        const score = player.scoreSheet;
+        if ((player.name === activePlayerLS) && !(score.Ones && score.Twos && score.Threes && score.Fours && score.Fives && score.Sixes === null)) {
+            const sum = (score.Ones || 0) + (score.Twos || 0) + (score.Threes || 0) + (score.Fours || 0) + (score.Fives || 0) + (score.Sixes || 0);
+            score.Total = sum;
+            if (sum > 50) {
+                score.Bonus = 50;
+            }
+            localStorage.setItem('players', JSON.stringify(playersFromLS));
+        }
+        else {
+            console.log(`You don't seem to have the score to do that just yet, luv.`);
+        }
+    });
 };
