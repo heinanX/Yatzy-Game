@@ -62,7 +62,7 @@ const save = (dice) => {
 // ------ 'MIDDLEWARE' for if saveScore function
 const checkCellID = (cell) => {
     const activePlayerLS = localStorage.getItem('activePlayer') || '[]';
-    if (cell.getAttribute('id') === `${activePlayerLS}`) {
+    if (cell.getAttribute('class') === `score ${activePlayerLS}`) {
         checkCellStatus(cell);
     }
     else {
@@ -77,14 +77,8 @@ const checkCellStatus = (cell) => {
         console.log('Oops. Lemme guess ... you slipped ;)');
     }
 };
-// -------
-const saveScore = (cell) => {
+const switchPlayer = () => {
     const numberOfPlayers = playersFromLS.length;
-    if (currentScore.length === 0) {
-        return console.log('Try throwing the dice first.');
-    }
-    const sum = currentScore.reduce((sum, die) => sum + die, 0);
-    cell.innerText = sum.toString();
     if (currentPlayer < numberOfPlayers - 1) {
         currentPlayer++;
         localStorage.setItem("activePlayer", playersFromLS[currentPlayer].name);
@@ -95,6 +89,25 @@ const saveScore = (cell) => {
         localStorage.setItem("activePlayer", playersFromLS[currentPlayer].name);
         console.log('this resets numbers ' + currentPlayer);
     }
+};
+// -------
+const saveScore = (cell) => {
+    //const numberOfPlayers = playersFromLS.length;
+    if (currentScore.length === 0) {
+        return console.log('Try throwing the dice first.');
+    }
+    const sum = currentScore.reduce((sum, die) => sum + die, 0);
+    cell.innerText = sum.toString();
+    switchPlayer();
+    /*  if (currentPlayer < numberOfPlayers -1) {
+         currentPlayer++;
+         localStorage.setItem("activePlayer", playersFromLS[currentPlayer].name)
+         console.log('this adds a number to ' + currentPlayer);
+     } else {
+     currentPlayer = 0
+     localStorage.setItem("activePlayer", playersFromLS[currentPlayer].name)
+     console.log('this resets numbers ' + currentPlayer);
+     } */
     // ----- Goes through list of divs and appends them back to diceBoard and empties their content.
     allDice.forEach(dice => {
         diceBoard.append(dice);
@@ -113,7 +126,6 @@ const saveScore = (cell) => {
 };
 const noValue = (cell) => {
     const activePlayerLS = localStorage.getItem('activePlayer') || '[]';
-    const numberOfPlayers = playersFromLS.length;
     if (!(cell.getAttribute('id') === `${activePlayerLS}`)) {
         alert('oops. Not yours');
     }
@@ -126,16 +138,7 @@ const noValue = (cell) => {
         if (idrecieved === 'Ones' || idrecieved === 'Twos' || idrecieved === 'Threes' || idrecieved === 'Fours' || idrecieved === 'Fives' || idrecieved === 'Sixes')
             addScoreToLS(idrecieved);
         //cell.innerText = '0'
-        if (currentPlayer < numberOfPlayers - 1) {
-            currentPlayer++;
-            localStorage.setItem("activePlayer", playersFromLS[currentPlayer].name);
-            console.log('this adds a number to ' + currentPlayer);
-        }
-        else {
-            currentPlayer = 0;
-            localStorage.setItem("activePlayer", playersFromLS[currentPlayer].name);
-            console.log('this resets numbers ' + currentPlayer);
-        }
+        switchPlayer();
         allDice.forEach(dice => {
             diceBoard.append(dice);
             dice.innerHTML = "";
@@ -150,14 +153,16 @@ const noValue = (cell) => {
     }
 };
 const calculateTotal = () => {
-    const activePlayerLS = localStorage.getItem('activePlayer') || '[]';
     playersFromLS.forEach(player => {
         const score = player.scoreSheet;
-        if ((player.name === activePlayerLS) && !(score.Ones && score.Twos && score.Threes && score.Fours && score.Fives && score.Sixes === null)) {
+        if (!(score.Ones && score.Twos && score.Threes && score.Fours && score.Fives && score.Sixes === null)) {
             const sum = (score.Ones || 0) + (score.Twos || 0) + (score.Threes || 0) + (score.Fours || 0) + (score.Fives || 0) + (score.Sixes || 0);
             score.Total = sum;
             if (sum > 50) {
                 score.Bonus = 50;
+            }
+            else {
+                score.Bonus = 0;
             }
             localStorage.setItem('players', JSON.stringify(playersFromLS));
         }
