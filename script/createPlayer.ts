@@ -31,6 +31,7 @@ const createPlayers = () => {
     for (const player of playersFromLS) {
     const playerName = player.name;
     const playerCell = document.createElement('th');
+    playerCell.setAttribute('class', `highlight${player.name}`)
     playerCell.style.width = '5rem';
     playerCell.textContent = playerName;
     headerRow.appendChild(playerCell);
@@ -50,7 +51,7 @@ const createPlayers = () => {
         
         const scoreData = document.createElement('td');
         scoreData.setAttribute('class', `score ${element.name}` )
-        scoreData.setAttribute('id', `${element.name}`)
+        scoreData.setAttribute('id', `${element.name}${category.name}`)
         
         scoreData.textContent = '';
         row.appendChild(scoreData);

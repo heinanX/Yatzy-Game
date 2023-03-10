@@ -9,62 +9,67 @@ const addScoreToLS = (cellID: keyof ScoreSheet) => {
 }
 
 const checkIncomingNumbers = (cell: HTMLTableCellElement) => {
-    const prntNode =  cell.parentNode! as HTMLTableRowElement
-    const idrecieved = prntNode.id
-    
+    const activePlayerLS = localStorage.getItem('activePlayer') || '[]'
+    const idrecieved =  `${cell.id}`
     switch (idrecieved) {
-        case 'Ones':
+        case `${activePlayerLS}Ones`:
             if (!currentScore.every(die => die === 1)) { return console.log('Not Eligible') }
-            addScoreToLS(idrecieved)
+            addScoreToLS('Ones')
             saveScore(cell)
         break;
-        case 'Twos':
+        case `${activePlayerLS}Twos`:
             if (!currentScore.every(die => die === 2)) { return console.log('Not Eligible') }
-            addScoreToLS(idrecieved)
+            addScoreToLS('Twos')
             saveScore(cell)
             
         break;
-        case 'Threes':
+        case `${activePlayerLS}Threes`:
             if (!currentScore.every(die => die === 3)) { return console.log('Not Eligible') }
-            addScoreToLS(idrecieved)
+            addScoreToLS('Threes')
             saveScore(cell)
         break;
-        case 'Fours':
+        case `${activePlayerLS}Fours`:
             if (!currentScore.every(die => die === 4)) { return console.log('Not Eligible') }
-            addScoreToLS(idrecieved)
+            addScoreToLS('Fours')
             saveScore(cell)
     
         break;
-        case 'Fives':
+        case `${activePlayerLS}Fives`:
             if (!currentScore.every(die => die === 5)) { return console.log('Not Eligible') }
-            addScoreToLS(idrecieved)
+            addScoreToLS('Fives')
             saveScore(cell)
         break;
-        case 'Sixes':
+        case `${activePlayerLS}Sixes`:
             if (!currentScore.every(die => die === 6)) { return console.log('Not Eligible') }
-            addScoreToLS(idrecieved)
+            addScoreToLS('Sixes')
             saveScore(cell)
         break;
-        case 'Total':
+        case `${activePlayerLS}One Pair`:
+            if (!(currentScore.length === 2)) { return console.log('You got too many dice, man!') }
+            if (!currentScore.every(die => (die === 1) || (die === 2) || (die === 3) || (die === 4) || (die === 5) || (die === 6))) { return console.log('Not Eligible') }
+            addScoreToLS('One Pair')
+            saveScore(cell)
     
         break;
-        case 'Bonus':
+        case `${activePlayerLS}Two Pair`:
+   /*          if (!(currentScore.length === 4)) { return console.log('You got too many dice, man!') }
+            if (!currentScore.every(die => (die && die === 1) || (die && die  === 2) || (die && die  === 3) || (die && die  === 4) || (die && die  === 5) || (die && die === 6))) { return console.log('Not Eligible') }
+            addScoreToLS('Two Pair')
+            saveScore(cell) */
     
         break;
-        case 'One Pair':
-    
+        case `${activePlayerLS}Three of a Kind`:
+            if (!(currentScore.length === 3)) { return console.log('You got too many dice, man!') }
+            if (!currentScore.every(die => (die === 1) || (die === 2) || (die === 3) || (die === 4) || (die === 5) || (die === 6))) { return console.log('Not Eligible') }
+            addScoreToLS('Two Pair')
+            saveScore(cell)
+
         break;
-        case 'Two Pair':
-    
-        break;
-        case 'Bonus':
-    
-        break;
-        case 'Three of a Kind':
-    
-        break;
-        case 'Four of a Kind':
-    
+        case `${activePlayerLS}Four of a Kind`:
+            if (!(currentScore.length === 4)) { return console.log('You got too many dice, man!') }
+            if (!currentScore.every(die => (die === 1) || (die === 2) || (die === 3) || (die === 4) || (die === 5) || (die === 6))) { return console.log('Not Eligible') }
+            addScoreToLS('Two Pair')
+            saveScore(cell)
         break;
         case 'Full House':
     
@@ -85,4 +90,5 @@ const checkIncomingNumbers = (cell: HTMLTableCellElement) => {
     
         break;
 
-}}
+}
+}

@@ -156,6 +156,7 @@ const playYatzi = () => {
     localStorage.setItem("activePlayer", playersFromLS[0].name)
     const activePlayerLS = localStorage.getItem('activePlayer') || '[]'
     disActivePlayer.innerHTML = `${activePlayerLS}'s turn`
+    highlightPlayer()
 
 }
 
@@ -172,4 +173,5 @@ const playMaxiYatzi= () => {
     localStorage.setItem("activePlayer", playersFromLS[0].name)
     const activePlayerLS = localStorage.getItem('activePlayer') || '[]'
     disActivePlayer.innerHTML = `${activePlayerLS}'s turn`
+    highlightPlayer()
 }
