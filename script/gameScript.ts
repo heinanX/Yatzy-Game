@@ -110,9 +110,8 @@ const highlightPlayer = () => {
 
 // -------
 
-const saveScore = (cell: HTMLTableCellElement) => {
+const saveScore = (cell: HTMLTableCellElement, sum: number) => {
     if (currentScore.length === 0) {return console.log('Try throwing the dice first.')}
-    const sum = currentScore.reduce((sum, die) => sum + die, 0)
     cell.innerText = sum.toString()
 
     switchPlayer()
@@ -150,7 +149,7 @@ const noValue = (cell: HTMLTableCellElement) => {
         playersFromLS.forEach(player => {
         const idrecieved =  cell.id
         if (idrecieved === `${player}Ones` || idrecieved === `${player}Twos` || idrecieved === `${player}Threes` || idrecieved === `${player}Fours` || idrecieved === `${player}Fives` || idrecieved === `${player}Sixes`)
-        addScoreToLS(id)
+        addScoreToLS(id, currentScore.length)
         })
 
         switchPlayer()

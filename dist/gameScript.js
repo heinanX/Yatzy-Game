@@ -97,11 +97,10 @@ const highlightPlayer = () => {
     player.style.backgroundColor = 'lightgray';
 };
 // -------
-const saveScore = (cell) => {
+const saveScore = (cell, sum) => {
     if (currentScore.length === 0) {
         return console.log('Try throwing the dice first.');
     }
-    const sum = currentScore.reduce((sum, die) => sum + die, 0);
     cell.innerText = sum.toString();
     switchPlayer();
     // ----- Goes through list of divs and appends them back to diceBoard and empties their content.
@@ -134,7 +133,7 @@ const noValue = (cell) => {
         playersFromLS.forEach(player => {
             const idrecieved = cell.id;
             if (idrecieved === `${player}Ones` || idrecieved === `${player}Twos` || idrecieved === `${player}Threes` || idrecieved === `${player}Fours` || idrecieved === `${player}Fives` || idrecieved === `${player}Sixes`)
-                addScoreToLS(id);
+                addScoreToLS(id, currentScore.length);
         });
         switchPlayer();
         allDice.forEach(dice => {
