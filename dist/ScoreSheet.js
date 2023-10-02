@@ -132,9 +132,5 @@ const checkIncomingNumbers = (cell) => {
             addScoreToLS('Chance', sum);
             saveScore(cell, sum);
             break;
-        /*         case `${activePlayerLS}Total Score`:
-            
-                break;
-         */
     }
 };
