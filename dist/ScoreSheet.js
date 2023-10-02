@@ -133,4 +133,5 @@ const checkIncomingNumbers = (cell) => {
             saveScore(cell, sum);
             break;
     }
+    /*  */
 };
